@@ -17,7 +17,7 @@ public class DisciplineController extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         DBManager manager = new DBManager();
         List<Discepline> disceplines1 = manager.getAllActiveDisceplines();
-        req.setAttribute("disceplines",disceplines1);
+        req.setAttribute("disciplines",disceplines1);
         req.getRequestDispatcher("WEB-INF/disceplines.jsp").forward(req,resp);
     }
 }

@@ -27,9 +27,8 @@
                 <th>&nbsp</th>
                 <th> название дисциплин</th>
             </tr>
-
-
-            <c:forEach items="${disceplines}" var="d">
+<%--            циклом проходимся по всем строкам в таблице Дисциплин--%>
+            <c:forEach items="${disciplines}" var="d">
             <tr>
                 <td><input type="checkbox" id=""></td>
                 <td>${d.discepline}</td>

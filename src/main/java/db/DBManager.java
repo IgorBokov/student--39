@@ -10,7 +10,10 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+
 public class DBManager implements IDBManager {
+
+
     @Override
     public List<Student> getAllActiveStudents() {
 
@@ -22,7 +25,7 @@ public class DBManager implements IDBManager {
             Statement stmt = con.createStatement();  // создали пустой запрос
             ResultSet rs = stmt.executeQuery("SELECT * FROM student WHERE status = 1");
 
-            while (rs.next()){
+            while (rs.next()) {
 
                 Student student = new Student();
                 student.setId(rs.getInt("id"));
@@ -55,17 +58,15 @@ public class DBManager implements IDBManager {
         ArrayList<Discepline> disceplines = new ArrayList<>();
         try {
             Class.forName("com.mysql.cj.jdbc.Driver"); // подключили драйвер jdbc
-            Connection con = DriverManager
-                    .getConnection("jdbc:mysql://localhost:3306/students_39?user = root&password = 324980");
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/students_39?user" +
+                    " = root&password = 324980");
             Statement stmt = con.createStatement();  // создали пустой запрос
-            ResultSet rs = stmt.executeQuery("SELECT * FROM discipline WHERE status = 1");
-            while (rs.next()){
+            ResultSet rs = stmt.executeQuery("SELECT * FROM discipline WHERE status = '1'");
+            while (rs.next()) {
                 Discepline discepline = new Discepline();
-                discepline.setId(rs.getInt("id"));
-                discepline.setDiscepline(rs.getString("discipline"));
+                discepline.setId(rs.getInt("id")); //"id" - это название из таблицы базы данных
+                discepline.setDiscepline(rs.getString("discipline"));//"discipline" - это название из таблицы базы данных
                 disceplines.add(discepline);
-
-
             }
         } catch (Exception e) {
             throw new RuntimeException(e);
@@ -75,7 +76,16 @@ public class DBManager implements IDBManager {
 
     @Override
     public void deleteDisceplines(String[] ids) {
-
+        ArrayList<Discepline> disceplines = new ArrayList<>();
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver"); // подключили драйвер jdbc
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/students_39?user" +
+                    " = root&password = 324980");
+            Statement stmt = con.createStatement();  // создали пустой запрос
+            ResultSet rs = stmt.executeQuery("SELECT * FROM discipline WHERE status = 1");
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override
