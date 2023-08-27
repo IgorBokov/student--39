@@ -20,8 +20,7 @@ public class DBManager implements IDBManager {
         ArrayList<Student> students = new ArrayList<>();
         try {
             Class.forName("com.mysql.cj.jdbc.Driver"); // подключили драйвер jdbc
-            Connection con = DriverManager
-                    .getConnection("jdbc:mysql://localhost:3306/students_39?user = root&password = 324980");
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/students_39?user = root&password = 324980");
             Statement stmt = con.createStatement();  // создали пустой запрос
             ResultSet rs = stmt.executeQuery("SELECT * FROM student WHERE status = 1");
 
@@ -46,11 +45,32 @@ public class DBManager implements IDBManager {
     @Override
     public void deleteStudent(String[] ids) {
 
+        for (String delStudent : ids) {
+            try {
+                Class.forName("com.mysql.cj.jdbc.Driver"); // подключили драйвер jdbc
+                Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/students_39?user" + " = root&password = 324980");
+                Statement stmt = con.createStatement();  // создали пустой запрос
+                stmt.executeUpdate("UPDATE `students_39`.`student` SET `status` = '0' WHERE id = ('" + delStudent + "');");
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+        }
     }
 
     @Override
     public Student getStudentById(String id) {
-        return null;
+
+        Student student = new Student();
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver"); // подключили драйвер jdbc
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/students_39?user" + " = root&password = 324980");
+            Statement stmt = con.createStatement();  // создали пустой запрос
+            ResultSet getStudent = stmt.executeQuery("SELECT name FROM student WHERE id = id");
+            student.setName(getStudent.getString("name"));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return student;
     }
 
     @Override
@@ -58,8 +78,7 @@ public class DBManager implements IDBManager {
         ArrayList<Discepline> disceplines = new ArrayList<>();
         try {
             Class.forName("com.mysql.cj.jdbc.Driver"); // подключили драйвер jdbc
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/students_39?user" +
-                    " = root&password = 324980");
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/students_39?user" + " = root&password = 324980");
             Statement stmt = con.createStatement();  // создали пустой запрос
             ResultSet rs = stmt.executeQuery("SELECT * FROM discipline WHERE status = '1'");
             while (rs.next()) {
@@ -76,25 +95,45 @@ public class DBManager implements IDBManager {
 
     @Override
     public void deleteDisceplines(String[] ids) {
-        ArrayList<Discepline> disceplines = new ArrayList<>();
-        try {
-            Class.forName("com.mysql.cj.jdbc.Driver"); // подключили драйвер jdbc
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/students_39?user" +
-                    " = root&password = 324980");
-            Statement stmt = con.createStatement();  // создали пустой запрос
-            ResultSet rs = stmt.executeQuery("SELECT * FROM discipline WHERE status = 1");
-        } catch (Exception e) {
-            throw new RuntimeException(e);
+        for (String delDiscipline : ids) {
+            try {
+                Class.forName("com.mysql.cj.jdbc.Driver"); // подключили драйвер jdbc
+                Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/students_39?user" + " = root&password = 324980");
+                Statement stmt = con.createStatement();  // создали пустой запрос
+                stmt.executeUpdate("UPDATE `students_39`.`student` SET `status` = '0' WHERE id = ('" + delDiscipline + "');");
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
         }
     }
 
     @Override
     public Discepline getDicseplineById(String id) {
-        return null;
+
+        Discepline discepline = new Discepline();
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver"); // подключили драйвер jdbc
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/students_39?user" + " = root&password = 324980");
+            Statement stmt = con.createStatement();  // создали пустой запрос
+            ResultSet getDiscepline = stmt.executeQuery("SELECT discipline FROM discipline WHERE id = id");
+            discepline.setDiscepline(getDiscepline.getString("discipline"));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return discepline;
     }
 
     @Override
     public void modifyDiscepline(String id, String newDiscepline) {
-
+        {
+            try {
+                Class.forName("com.mysql.cj.jdbc.Driver"); // подключили драйвер jdbc
+                Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/students_39?user" + " = root&password = 324980");
+                Statement stmt = con.createStatement();  // создали пустой запрос
+                stmt.executeUpdate("UPDATE students_39.discipline SET discipline = ('" + newDiscepline + "') WHERE id = ('" + id + "');");
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+        }
     }
 }

@@ -27,19 +27,25 @@
                 <th>&nbsp</th>
                 <th> название дисциплин</th>
             </tr>
-<%--            циклом проходимся по всем строкам в таблице Дисциплин--%>
+
             <c:forEach items="${disciplines}" var="d">
-            <tr>
-                <td><input type="checkbox" id=""></td>
-                <td>${d.discepline}</td>
-            </tr>
+                <tr>
+                    <td><input type="checkbox" id=""></td>
+                    <td>${d.discepline}</td>
+                </tr>
             </c:forEach>
 
         </table>
         <div class="discipline-btns">
-            <button>создать дисциплину</button>
-            <button>модифицировать выбранную дисциплину</button>
-            <button>удалить выбранную дисциплину</button>
+            <form action="/crateNewDiscipline" target="_top">
+                <button>создать дисциплину</button>
+            </form>
+            <form action="/modifySelectDiscipline" target="_top">
+                <button>модифицировать выбранную дисциплину</button>
+            </form>
+            <form action="/deleteSelectDiscipline" target="_top">
+                <button>удалить выбранную дисциплину</button>
+            </form>
         </div>
     </div>
 

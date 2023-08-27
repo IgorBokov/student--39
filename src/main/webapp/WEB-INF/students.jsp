@@ -1,5 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>  // это указывает что подключены теги Java по "c"
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@page isELIgnored="false" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -31,7 +31,10 @@
             <form action="/student-create" method="get">
             <input type="submit" class="student-btn" value="создать студента"/>
             </form>
-            <button class="student-btn">удалить выбранных студентов</button>
+            <form action="/deleteSelectStudents" method="get">
+                <button class="student-btn">удалить выбранных студентов</button>
+            </form>
+
         </div>
     </div>
     <h2 class="heading-secondary">
