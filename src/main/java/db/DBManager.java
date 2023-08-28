@@ -45,15 +45,14 @@ public class DBManager implements IDBManager {
     @Override
     public void deleteStudent(String[] ids) {
 
-        for (String delStudent : ids) {
-            try {
-                Class.forName("com.mysql.cj.jdbc.Driver"); // подключили драйвер jdbc
-                Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/students_39?user" + " = root&password = 324980");
-                Statement stmt = con.createStatement();  // создали пустой запрос
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver"); // подключили драйвер jdbc
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/students_39?user" + " = root&password = 324980");
+            Statement stmt = con.createStatement();  // создали пустой запрос
+            for (String delStudent : ids)
                 stmt.executeUpdate("UPDATE `students_39`.`student` SET `status` = '0' WHERE id = ('" + delStudent + "');");
-            } catch (Exception e) {
-                throw new RuntimeException(e);
-            }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
         }
     }
 
@@ -65,7 +64,7 @@ public class DBManager implements IDBManager {
             Class.forName("com.mysql.cj.jdbc.Driver"); // подключили драйвер jdbc
             Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/students_39?user" + " = root&password = 324980");
             Statement stmt = con.createStatement();  // создали пустой запрос
-            ResultSet getStudent = stmt.executeQuery("SELECT name FROM student WHERE id = id");
+            ResultSet getStudent = stmt.executeQuery("SELECT name FROM student WHERE id = '" + id + "'");
             student.setName(getStudent.getString("name"));
         } catch (Exception e) {
             e.printStackTrace();
@@ -95,17 +94,17 @@ public class DBManager implements IDBManager {
 
     @Override
     public void deleteDisceplines(String[] ids) {
-        for (String delDiscipline : ids) {
-            try {
-                Class.forName("com.mysql.cj.jdbc.Driver"); // подключили драйвер jdbc
-                Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/students_39?user" + " = root&password = 324980");
-                Statement stmt = con.createStatement();  // создали пустой запрос
-                stmt.executeUpdate("UPDATE `students_39`.`student` SET `status` = '0' WHERE id = ('" + delDiscipline + "');");
-            } catch (Exception e) {
-                throw new RuntimeException(e);
-            }
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver"); // подключили драйвер jdbc
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/students_39?user" + " = root&password = 324980");
+            Statement stmt = con.createStatement();  // создали пустой запрос
+            for (String delDiscipline : ids)
+                stmt.executeUpdate("UPDATE `students_39`.`discipline` SET `status` = '0' WHERE id = '" + delDiscipline + "';");
+        } catch (Exception e) {
+            throw new RuntimeException(e);
         }
     }
+
 
     @Override
     public Discepline getDicseplineById(String id) {
@@ -130,10 +129,11 @@ public class DBManager implements IDBManager {
                 Class.forName("com.mysql.cj.jdbc.Driver"); // подключили драйвер jdbc
                 Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/students_39?user" + " = root&password = 324980");
                 Statement stmt = con.createStatement();  // создали пустой запрос
-                stmt.executeUpdate("UPDATE students_39.discipline SET discipline = ('" + newDiscepline + "') WHERE id = ('" + id + "');");
+                stmt.executeUpdate("UPDATE students_39.discipline SET discipline = '" + newDiscepline + "' WHERE id = '" + id + "'");
             } catch (Exception e) {
                 throw new RuntimeException(e);
             }
         }
     }
+
 }
