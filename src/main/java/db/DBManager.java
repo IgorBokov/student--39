@@ -13,7 +13,6 @@ import java.util.List;
 
 public class DBManager implements IDBManager {
 
-
     @Override
     public List<Student> getAllActiveStudents() {
 
@@ -64,10 +63,21 @@ public class DBManager implements IDBManager {
             Class.forName("com.mysql.cj.jdbc.Driver"); // подключили драйвер jdbc
             Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/students_39?user" + " = root&password = 324980");
             Statement stmt = con.createStatement();  // создали пустой запрос
-            ResultSet getStudent = stmt.executeQuery("SELECT name FROM student WHERE id = '" + id + "'");
-            student.setName(getStudent.getString("name"));
+            ResultSet rs = stmt.executeQuery("SELECT * FROM student WHERE id = '" + id + "'");
+            while (rs.next()) {
+
+                student.setId(rs.getInt("id"));
+                student.setSurname(rs.getString("surname"));
+                student.setName(rs.getString("name"));
+                student.setGroup(rs.getString("group"));
+                student.setDate(rs.getDate("date"));
+                student.setStatus(1);
+
+            }
+
         } catch (Exception e) {
             e.printStackTrace();
+
         }
         return student;
     }
@@ -105,7 +115,6 @@ public class DBManager implements IDBManager {
         }
     }
 
-
     @Override
     public Discepline getDicseplineById(String id) {
 
@@ -114,8 +123,13 @@ public class DBManager implements IDBManager {
             Class.forName("com.mysql.cj.jdbc.Driver"); // подключили драйвер jdbc
             Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/students_39?user" + " = root&password = 324980");
             Statement stmt = con.createStatement();  // создали пустой запрос
-            ResultSet getDiscepline = stmt.executeQuery("SELECT discipline FROM discipline WHERE id = id");
-            discepline.setDiscepline(getDiscepline.getString("discipline"));
+            ResultSet rs = stmt.executeQuery("SELECT * FROM discipline WHERE id = '" + id + "'");
+            while (rs.next()) {
+                discepline.setId(rs.getInt("id"));
+                discepline.setDiscepline(rs.getString("discipline"));
+                discepline.setStatus(rs.getInt("status"));
+            }
+
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -123,7 +137,7 @@ public class DBManager implements IDBManager {
     }
 
     @Override
-    public void modifyDiscepline(String id, String newDiscepline) {
+    public void modifyDiscipline(String id, String newDiscepline) {
         {
             try {
                 Class.forName("com.mysql.cj.jdbc.Driver"); // подключили драйвер jdbc
@@ -135,5 +149,4 @@ public class DBManager implements IDBManager {
             }
         }
     }
-
 }

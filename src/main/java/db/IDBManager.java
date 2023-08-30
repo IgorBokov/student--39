@@ -18,6 +18,6 @@ public interface IDBManager {
 
     Discepline getDicseplineById(String id);
 
-    void modifyDiscepline(String id, String newDiscepline);
+    void modifyDiscipline(String id, String newDiscepline);
 
 }
