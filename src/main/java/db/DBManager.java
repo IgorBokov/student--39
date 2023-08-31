@@ -149,4 +149,18 @@ public class DBManager implements IDBManager {
             }
         }
     }
+
+    @Override
+    public void createStudent(String surname, String name, String group, String date) {
+
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver"); // подключили драйвер jdbc
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/students_39?user = root&password = 324980");
+            Statement stmt = con.createStatement();  // создали пустой запрос
+             stmt.execute("INSERT INTO `student` (`surname`, `name`, `group`, `date`) VALUES ('"+surname+"', '"+name+"', '"+group+"', '"+date+"');");
+
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
 }

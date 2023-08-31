@@ -17,7 +17,7 @@ public class StudentsController extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         DBManager manager = new DBManager();
         List<Student> students1 = manager.getAllActiveStudents();
-        req.setAttribute("students", students1);// придумали назв. посылки - students и положили туда - students1
+        req.setAttribute("students", students1);// Придумали назв., "посылки" - students и положили туда - students1
         req.getRequestDispatcher("WEB-INF/students.jsp").forward(req,resp);
     }
 }

@@ -19,5 +19,6 @@ public interface IDBManager {
     Discepline getDicseplineById(String id);
 
     void modifyDiscipline(String id, String newDiscepline);
+    void createStudent(String surname,String name,String group,String date);
 
 }

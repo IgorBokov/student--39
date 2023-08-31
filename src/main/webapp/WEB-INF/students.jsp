@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@page isELIgnored="false" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -24,7 +25,7 @@
 
     <div class="student-btns">
         <div class="student-btns1">
-            <button class="student-btn"> посмотреть умпеваемость выбранных студентов</button>
+            <button class="student-btn"> посмотреть успеваемость выбранных студентов</button>
             <button class="student-btn"> модифицировать выбранного студента</button>
         </div>
         <div class="student-btns1">
@@ -38,7 +39,7 @@
         </div>
     </div>
     <h2 class="heading-secondary">
-        список студентов
+        Список студентов
     </h2>
     <table class="student-table" border="1">
         <tr>
@@ -56,7 +57,7 @@
             <td>${st.surname}</td>
             <td>${st.name}</td>
             <td>${st.group}</td>
-            <td>${st.date}</td>
+            <td><fmt:formatDate value="${st.date}" pattern="dd/MM/yyyy"/></td>
         </tr>
         </c:forEach>
 

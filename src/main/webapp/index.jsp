@@ -19,7 +19,7 @@
 </aside>
 
 <main class="main">
-    <h1 class="main-heading"> система управления студентами и их успеваемостью
+    <h1 class="main-heading"> Система управления студентами и их успеваемостью
 
     </h1>
     <div class="container">
@@ -31,7 +31,6 @@
 </main>
 <aside class="logout">
     <a href="#" class="logout-btn">logout</a>
-
 </aside>
 
 </body>
