@@ -17,7 +17,7 @@ public class TestDB {
         con.setDoOutput(true); // Разрешаем отправку тела запроса
 
         // Данные для отправки
-        String formParameters = "param1=Bokov&param2=Bokov90+";
+        String formParameters = "param1=IBokovNAV&param2=Bokov90+";
 
         try (OutputStream outputStream = con.getOutputStream()) {
             byte[] input = formParameters.getBytes("utf-8");

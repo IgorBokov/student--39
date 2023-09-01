@@ -54,12 +54,12 @@
         </tr>
     </table>
     <br>
-
+        <c:if test = "${message eq 1}">
+            <p>Поля не должны быть пустыми: </p>
+        </c:if>
     <input type="submit" value="создать" class="field">
     </form>
-    <c:if test = "${message eq 1}">
-        <p>Поля не должны быть пустыми: </p>
-    </c:if>
+
     </div>
 
 </main>

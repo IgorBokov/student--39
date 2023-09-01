@@ -24,14 +24,12 @@ public class StudentCreateController extends HttpServlet {
         String group = req.getParameter("group");
         String date = req.getParameter("date");
 
-        manager.createStudent(surname, name, group, date);
-        resp.sendRedirect("/students");
         if ((surname == null || name == null || group == null || date == null) ||
                 (surname.equals("") || name.equals("") || group.equals("") || date.equals(""))) {
             req.setAttribute("message", 1);
             req.getRequestDispatcher("WEB-INF/student-create.jsp").forward(req, resp);
-
         }
-        return;
+        manager.createStudent(surname, name, group, date);
+        resp.sendRedirect("/students");
     }
 }
