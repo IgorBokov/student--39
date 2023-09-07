@@ -14,12 +14,14 @@ import java.util.List;
 @WebServlet(name = "DeleteSelectStudents", urlPatterns = "/deleteSelectStudents")
 public class DeleteSelectStudents extends HttpServlet {
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         DBManager dbManager = new DBManager();
-        String[]ids = new String[]{"2","4"};// заглушка для проверки метода
+        String hiddenDelete1 = req.getParameter("hiddenDelete");
+        String[]ids = hiddenDelete1.split(" ");
         dbManager.deleteStudent(ids);
-        List<Student> students = dbManager.getAllActiveStudents();
+        resp.sendRedirect("/students");
+       /* List<Student> students = dbManager.getAllActiveStudents();
         req.setAttribute("students", students);
-        req.getRequestDispatcher("WEB-INF/students.jsp").forward(req, resp);
+        req.getRequestDispatcher("WEB-INF/students.jsp").forward(req, resp);*/
     }
 }

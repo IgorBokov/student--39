@@ -1,4 +1,4 @@
-<%@ page contentType="text/html;charset=UTF-8" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@page isELIgnored="false" %>
@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="../recourses/css/style.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Kelly+Slab&display=swap" rel="stylesheet">
+    <script type="javascript" src="../recourses/js/funcktion.js"></script>
     <title>student</title>
 </head>
 <body>
@@ -32,8 +33,8 @@
             <form action="<c:url value="/student-create"/>" method="get">
                 <button class="student-btn">создать студента</button>
             </form>
-            <form action="<c:url value="/deleteSelectStudents"/>" method="get">
-                <button class="student-btn">удалить выбранных студентов</button>
+            <form action="<c:url value="/deleteSelectStudents"/>" method="post">
+                <button class="idStudent" onclick="deleteStudents()">удалить выбранных студентов</button>
             </form>
 
         </div>
@@ -55,7 +56,7 @@
             <tr>
                 <td>
                     <label for="select_checkbox"></label>
-                    <input type="checkbox" id="select_checkbox">
+                    <input type="checkbox" id="select_checkbox" value="${st.id}">
                 </td>
                 <td>${st.surname}</td>
                 <td>${st.name}</td>
@@ -71,6 +72,10 @@
     <a href="#" class="logout-btn">logout</a>
 
 </aside>
+
+<form action="${pageContext.request.contextPath}/student-delete" method="post" id="formDelete">
+    <input type="hidden" value="" id="hiddenDelete" name="hiddenDelete">
+</form>
 
 </body>
 </html>
