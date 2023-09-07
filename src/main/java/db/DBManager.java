@@ -3,10 +3,7 @@ package db;
 import entiny.Discepline;
 import entiny.Student;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,21 +21,23 @@ public class DBManager implements IDBManager {
             ResultSet rs = stmt.executeQuery("SELECT * FROM student WHERE status = 1");
 
             while (rs.next()) {
-
-                Student student = new Student();
-                student.setId(rs.getInt("id"));
-                student.setSurname(rs.getString("surname"));
-                student.setName(rs.getString("name"));
-                student.setGroup(rs.getString("group"));
-                student.setDate(rs.getDate("date"));
-                student.setStatus(1);
-
-                students.add(student);
+                Student studentNew = new Student();
+                readingStudentFieldsFromDB(rs, studentNew);
+                students.add(studentNew);
             }
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
         return students;
+    }
+
+    private void readingStudentFieldsFromDB(ResultSet rs, Student student) throws SQLException {
+        student.setId(rs.getInt("id"));
+        student.setSurname(rs.getString("surname"));
+        student.setName(rs.getString("name"));
+        student.setGroup(rs.getString("group"));
+        student.setDate(rs.getDate("date"));
+        student.setStatus(1);
     }
 
     @Override
@@ -65,14 +64,7 @@ public class DBManager implements IDBManager {
             Statement stmt = con.createStatement();  // создали пустой запрос
             ResultSet rs = stmt.executeQuery("SELECT * FROM student WHERE id = '" + id + "'");
             while (rs.next()) {
-
-                student.setId(rs.getInt("id"));
-                student.setSurname(rs.getString("surname"));
-                student.setName(rs.getString("name"));
-                student.setGroup(rs.getString("group"));
-                student.setDate(rs.getDate("date"));
-                student.setStatus(1);
-
+                readingStudentFieldsFromDB(rs, student);
             }
 
         } catch (Exception e) {

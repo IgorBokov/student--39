@@ -18,20 +18,20 @@ public class StudentCreateController extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        DBManager manager = new DBManager();
+
         String surname = req.getParameter("surname");
         String name = req.getParameter("name");
         String group = req.getParameter("group");
         String date = req.getParameter("date");
 
-        manager.createStudent(surname, name, group, date);
-        resp.sendRedirect("/students");
         if ((surname == null || name == null || group == null || date == null) ||
                 (surname.equals("") || name.equals("") || group.equals("") || date.equals(""))) {
             req.setAttribute("message", 1);
             req.getRequestDispatcher("WEB-INF/student-create.jsp").forward(req, resp);
-
+            return;
         }
-        return;
+        DBManager manager = new DBManager();
+        manager.createStudent(surname, name, group, date);
+        resp.sendRedirect("/students");
     }
 }

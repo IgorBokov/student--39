@@ -9,15 +9,13 @@ import java.net.URL;
 
 public class TestDB {
     public static void main(String[] args) throws Exception {
-        URL url = new URL("https://www.autopartners.net/gmentsso/UI/" +
-                "Login?goto=https%3A%2F%2Fdealer.autopartners.net%3A443%2Fportal%" +
-                "2Fru%2FPages%2Fdefault.aspx"); // URL адрес сервера
+        URL url = new URL("https://chery.websoft.ru/default?mode=default&auth_err=1"); // URL адрес сервера
         HttpURLConnection con = (HttpURLConnection) url.openConnection();
         con.setRequestMethod("POST"); // Задаем метод запроса post
         con.setDoOutput(true); // Разрешаем отправку тела запроса
 
         // Данные для отправки
-        String formParameters = "param1=Bokov&param2=Bokov90+";
+        String formParameters = "param1=i.g.bokov&param2=asdf54321";
 
         try (OutputStream outputStream = con.getOutputStream()) {
             byte[] input = formParameters.getBytes("utf-8");
@@ -31,7 +29,7 @@ public class TestDB {
             while ((responseLine = br.readLine()) != null) {
                 response.append(responseLine.trim());
             }
-            System.out.println(response.toString());
+            System.out.println(response);
         }
     }
 }

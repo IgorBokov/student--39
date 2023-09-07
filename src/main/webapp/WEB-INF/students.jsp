@@ -1,4 +1,4 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@page isELIgnored="false" %>
@@ -29,10 +29,10 @@
             <button class="student-btn"> модифицировать выбранного студента</button>
         </div>
         <div class="student-btns1">
-            <form action="/student-create" method="get">
-            <input type="submit" class="student-btn" value="создать студента"/>
+            <form action="<c:url value="/student-create"/>" method="get">
+                <button class="student-btn">создать студента</button>
             </form>
-            <form action="/deleteSelectStudents" method="get">
+            <form action="<c:url value="/deleteSelectStudents"/>" method="get">
                 <button class="student-btn">удалить выбранных студентов</button>
             </form>
 
@@ -41,7 +41,7 @@
     <h2 class="heading-secondary">
         Список студентов
     </h2>
-    <table class="student-table" border="1">
+    <table class="student-table">
         <tr>
             <th>&nbsp</th>
             <th>фамилия</th>
@@ -50,15 +50,18 @@
             <th>дата поступления</th>
         </tr>
 
+        <%--@elvariable id="students" type="java.util.List"--%>
         <c:forEach items="${students}" var="st">
-        <tr>
-            <td> <input type="checkbox" id="">
-            </td>
-            <td>${st.surname}</td>
-            <td>${st.name}</td>
-            <td>${st.group}</td>
-            <td><fmt:formatDate value="${st.date}" pattern="dd/MM/yyyy"/></td>
-        </tr>
+            <tr>
+                <td>
+                    <label for="select_checkbox"></label>
+                    <input type="checkbox" id="select_checkbox">
+                </td>
+                <td>${st.surname}</td>
+                <td>${st.name}</td>
+                <td>${st.group}</td>
+                <td><fmt:formatDate value="${st.date}" pattern="dd/MM/yyyy"/></td>
+            </tr>
         </c:forEach>
 
     </table>
