@@ -31,10 +31,11 @@
         </div>
         <div class="student-btns1">
             <form action="/student-create" method="get">
-                <input type="submit" class="student-btn" value="создать студента"/>
+                <button class="student-btn">создать студента</button>
             </form>
-
-                <input type="submit" onclick="deleteStudents()"  class="student-btn" value="удалить выбранных студентов"/>
+            <form>
+                <input type="submit" onclick="deleteStudents()" class="student-btn" value=""/>
+                <button class="student-btn">удалить выбранных студентов</button>
             </form>
 
         </div>
@@ -65,14 +66,13 @@
     </table>
 
 </main>
-<aside class="logout">
-    <a href="#" class="logout-btn">logout</a>
+    <aside class="logout">
+        <a href="#" class="logout-btn">logout</a>
+    </aside>
 
-</aside>
-
-<form action="/deleteSelectStudents" method="post" id="formDelete">
-    <input type="hidden" value="" id="hiddenDel" name="hiddenDelete">
-</form>
+    <form action="/deleteSelectStudents" method="post" id="formDelete">
+        <input type="hidden" value="" id="hiddenDel" name="hiddenDelete">
+    </form>
 
 </body>
 </html>
