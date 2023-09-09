@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="../recourses/css/style.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Kelly+Slab&display=swap" rel="stylesheet">
-    <script type="javascript" src="../recourses/js/funcktion.js"></script>
+    <script src="../recourses/js/function.js"></script>
     <title>student</title>
 </head>
 <body>
@@ -30,11 +30,11 @@
             <button class="student-btn"> модифицировать выбранного студента</button>
         </div>
         <div class="student-btns1">
-            <form action="<c:url value="/student-create"/>" method="get">
-                <button class="student-btn">создать студента</button>
+            <form action="/student-create" method="get">
+                <input type="submit" class="student-btn" value="создать студента"/>
             </form>
-            <form action="<c:url value="/deleteSelectStudents"/>" method="post">
-                <button class="idStudent" onclick="deleteStudents()">удалить выбранных студентов</button>
+
+                <input type="submit" onclick="deleteStudents()"  class="student-btn" value="удалить выбранных студентов"/>
             </form>
 
         </div>
@@ -42,7 +42,7 @@
     <h2 class="heading-secondary">
         Список студентов
     </h2>
-    <table class="student-table">
+    <table class="student-table" border="1">
         <tr>
             <th>&nbsp</th>
             <th>фамилия</th>
@@ -51,12 +51,9 @@
             <th>дата поступления</th>
         </tr>
 
-        <%--@elvariable id="students" type="java.util.List"--%>
         <c:forEach items="${students}" var="st">
             <tr>
-                <td>
-                    <label for="select_checkbox"></label>
-                    <input type="checkbox" id="select_checkbox" value="${st.id}">
+                <td><input type="checkbox" id="" value="${st.id}" class="idStudent">
                 </td>
                 <td>${st.surname}</td>
                 <td>${st.name}</td>
@@ -73,8 +70,8 @@
 
 </aside>
 
-<form action="${pageContext.request.contextPath}/student-delete" method="post" id="formDelete">
-    <input type="hidden" value="" id="hiddenDelete" name="hiddenDelete">
+<form action="/deleteSelectStudents" method="post" id="formDelete">
+    <input type="hidden" value="" id="hiddenDel" name="hiddenDelete">
 </form>
 
 </body>

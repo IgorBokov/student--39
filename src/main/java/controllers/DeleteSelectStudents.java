@@ -16,12 +16,9 @@ public class DeleteSelectStudents extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         DBManager dbManager = new DBManager();
-        String hiddenDelete1 = req.getParameter("hiddenDelete");
-        String[]ids = hiddenDelete1.split(" ");
+        String hiddenDelet = req.getParameter("hiddenDelete");
+        String[]ids = hiddenDelet.split(" ");
         dbManager.deleteStudent(ids);
         resp.sendRedirect("/students");
-       /* List<Student> students = dbManager.getAllActiveStudents();
-        req.setAttribute("students", students);
-        req.getRequestDispatcher("WEB-INF/students.jsp").forward(req, resp);*/
     }
 }

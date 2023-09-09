@@ -4,15 +4,14 @@ function deleteStudents() {
 
     for (var i = 0; i < checkBoxes.length; i++) {
         if (checkBoxes[i].checked) {
-            idsToDelete = idsToDelete + checkBoxes[i].value + " ";
+            idsToDelete += checkBoxes[i].value + " ";
         }
     }
     if (idsToDelete === "") {
         alert("Please select for delete");
         return;
     }
-    var hidden = document.getElementById('hiddenDelete');
+    var hidden = document.getElementById('hiddenDel');
     hidden.value = idsToDelete;
     document.getElementById('formDelete').submit();
-
 }
