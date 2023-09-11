@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="../recourses/css/style.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Kelly+Slab&display=swap" rel="stylesheet">
-    <title>student-creating</title>
+    <title>student-modify</title>
 </head>
 <body>
 <aside class="navigation">
@@ -21,35 +21,36 @@
 
 <main class="main">
     <h1 class="main-heading"> система управления студентами и их успеваемостью</h1>
-    <h2 class="heading-secondary">для создания студента заполните все поля и нажмите кнопку "создать"</h2>
+    <h2 class="heading-secondary">для модификации студента отредактируйте все поля и нажмите кнопку "применить"</h2>
 
 
-    <form action="/student-create" method="post">
+    <form action="/student-modify" method="post">
+        <input type="hidden" name="id" value="${student.id}">
         <table>
             <tr>
                 <td class="cell1" align="right"><h3>фамилия</h3></td>
-                <td><input name="surname" type="text" id="name"></td>
+                <td><input name="surname" type="text" value="${student.surname}"></td>
             </tr>
         </table>
         <br>
         <table>
             <tr>
                 <td class="cell1" align="right"><h3>имя</h3></td>
-                <td><input name="name" id="name"></td>
+                <td><input name="name" value="${student.name}"></td>
             </tr>
         </table>
         <br>
         <table>
             <tr>
                 <td class="cell1" align="right"><h3>группа</h3></td>
-                <td><input name="group" id="name"></td>
+                <td><input name="group" value="${student.group}"></td>
             </tr>
         </table>
         <br>
         <table>
             <tr>
                 <td class="cell1" align="right"><h3>дата поступления</h3></td>
-                <td><input name="date" id="name"></td>
+                <td><input name="date" value="${student.date}"></td>
 
             </tr>
         </table>
@@ -57,7 +58,7 @@
         <c:if test="${message eq 1}">
             <p>Поля не должны быть пустыми: </p>
         </c:if>
-        <input type="submit" value="создать" class="field">
+        <input type="submit" value="отправить" class="field">
     </form>
 
     </div>
