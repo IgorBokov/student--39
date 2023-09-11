@@ -8,8 +8,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../recourses/css/style.css">
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Kelly+Slab&display=swap" rel="stylesheet">
+   <%-- <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Kelly+Slab&display=swap" rel="stylesheet">--%>
     <script src="../recourses/js/function.js"></script>
     <title>student</title>
 </head>
@@ -33,10 +33,8 @@
             <form action="/student-create" method="get">
                 <button class="student-btn">создать студента</button>
             </form>
-            <form>
-                <input type="submit" onclick="deleteStudents()" class="student-btn" value=""/>
-                <button class="student-btn">удалить выбранных студентов</button>
-            </form>
+
+                <input type="submit" onclick="deleteStudents()" class="student-btn" value="удалить выбранных студентов">
 
         </div>
     </div>
@@ -66,13 +64,13 @@
     </table>
 
 </main>
-    <aside class="logout">
-        <a href="#" class="logout-btn">logout</a>
-    </aside>
+<aside class="logout">
+    <a href="#" class="logout-btn">logout</a>
+</aside>
 
-    <form action="/deleteSelectStudents" method="post" id="formDelete">
-        <input type="hidden" value="" id="hiddenDel" name="hiddenDelete">
-    </form>
+<form action="/deleteSelectStudents" method="post" id="formDelete">
+    <input type="hidden" value="" id="hiddenDel" name="hiddenDelete">
+</form>
 
 </body>
 </html>
