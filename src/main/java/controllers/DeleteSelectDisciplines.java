@@ -11,11 +11,11 @@ import java.io.IOException;
 @WebServlet(name = "DeleteSelectDisciplines", urlPatterns ="/deleteSelectDiscipline")
 public class DeleteSelectDisciplines extends HttpServlet {
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         DBManager manager = new DBManager();
-        String hiddenDelete = req.getParameter("qazwsx");
+        String hiddenDelete = req.getParameter("typeNameDeleteDiscipline");
         String[]ids = hiddenDelete.split(" ");
         manager.deleteDisceplines(ids);
-        resp.sendRedirect("/discipline");
+        resp.sendRedirect("/terms");
     }
 }

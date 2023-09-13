@@ -11,7 +11,7 @@
 <%--    <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Kelly+Slab&display=swap" rel="stylesheet">--%>
     <script src="../recourses/js/function.js"></script>
-    <title>disciplines</title>
+    <title>disceplines</title>
 </head>
 <body>
 <aside class="navigation">
@@ -57,8 +57,8 @@
 
 </aside>
 
-<form action="/deleteSelectDiscipline" method="post" id="qwert">
-    <input type="hidden" value="" id="rewq" name="qazwsx">
+<form action="/deleteSelectDiscipline" method="post" id="fieldID">
+    <input type="hidden" value="" id="typeHiddenID" name="typeNameDeleteDiscipline">
 </form>
 </body>
 </html>

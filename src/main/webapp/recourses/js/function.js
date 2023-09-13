@@ -28,7 +28,7 @@ function deleteDiscipline() {
         alert("Please select for delete");
         return;
     }
-    let hidden = document.getElementById('rewq');
+    let hidden = document.getElementById('fieldID');
     hidden.value = idsToDelete;
-    document.getElementById('qwert').submit();
+    document.getElementById('typeHiddenID').submit();
 }
