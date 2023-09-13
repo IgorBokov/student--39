@@ -14,7 +14,7 @@ import java.util.List;
 @WebServlet(name = "DeleteSelectStudents", urlPatterns = "/deleteSelectStudents")
 public class DeleteSelectStudents extends HttpServlet {
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         DBManager dbManager = new DBManager();
         String hiddenDelet = req.getParameter("hiddenDelete");
         String[]ids = hiddenDelet.split(" ");
