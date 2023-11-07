@@ -20,6 +20,8 @@ public class Term {     //семестр
     public void setId(int id) {
         this.id = id;
     }
+    public void setTerm(String term) {
+    }
 
     public String getDuration() {
         return duration;

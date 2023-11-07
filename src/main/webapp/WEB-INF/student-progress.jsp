@@ -57,11 +57,13 @@
         </div>
         <div class="choice-semestr">
             <h2> выбрать семестр : </h2>
-            <select border="1">
-                <option class="choice"> семестр1</option>
-                <option class="choice"> семестр2</option>
-            </select>
             <form action="/student-progress" method="get">
+                <select border="1" name="selectedTermId">
+                    <c:forEach items="${terms}" var="terM">
+                        <option class="choice">${terM.term}</option>
+                    </c:forEach>
+                </select>
+
                 <input type="hidden" name="hiddenProgress" value="${student.id}">
                 <input type="submit" class="choice-btn" value="выбрать">
             </form>

@@ -181,10 +181,12 @@ public class DBManager implements IDBManager {
                 Term term = new Term();
                 term.setId(rs.getInt("id"));
                 term.setTerm(rs.getString("term"));
+                term.setDuration(rs.getString("duration"));
+                terms.add(term);
             }
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
-        return disceplines;
+        return terms;
     }
 }

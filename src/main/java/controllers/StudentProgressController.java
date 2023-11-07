@@ -21,6 +21,7 @@ public class StudentProgressController extends HttpServlet {
         Student student = manager.getStudentById(idStudent);
         req.setAttribute("student", student); //передаем на отображение value="${student.id}"
         List<Term> terms = manager.getAllActiveTerm();
+        req.setAttribute("terms", terms);
         req.getRequestDispatcher("WEB-INF/student-progress.jsp").forward(req,resp);
     }
 }
