@@ -6,6 +6,7 @@ import java.util.Objects;
 
 public class Term {     //семестр
     private int id;
+    private String term;
     private String duration;   // длительность
     private int status = 1;
     private List<Discepline> disceplines = new ArrayList<>();
@@ -19,6 +20,13 @@ public class Term {     //семестр
 
     public void setId(int id) {
         this.id = id;
+    }
+    public void setTerm(String term) {
+        this.term= term;
+    }
+
+    public String getTerm() {
+        return term;
     }
 
     public String getDuration() {
