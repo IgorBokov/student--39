@@ -45,14 +45,12 @@
                     <th>дисциплина</th>
                     <th>оценка</th>
                 </tr>
-                <tr>
-                    <td>информатика</td>
-                    <td>&nbsp</td>
-                </tr>
-                <tr>
-                    <td>социология</td>
-                    <td>&nbsp</td>
-                </tr>
+                <c:forEach items="${marks}" var="m" >
+                    <tr>
+                        <td>${m.discepline.discepline}</td>
+                        <td>${m.mark}</td>
+                    </tr>
+                </c:forEach>
             </table>
         </div>
         <div class="choice-semestr">
@@ -60,7 +58,14 @@
             <form action="/student-progress" method="get">
                 <select border="1" name="selectedTermId">
                     <c:forEach items="${terms}" var="t">
-                        <option class="choice">${t.term}</option>
+                        <c:choose>
+                            <c:when test="${t.id == selected}">
+                                <option selected value="${t.id}" class="choice">${t.term}</option>
+                            </c:when>
+                            <c:otherwise>
+                                <option value="${t.id}" class="choice">${t.term}</option>
+                            </c:otherwise>
+                        </c:choose>
                     </c:forEach>
                 </select>
                 <input type="hidden" name="hiddenProgress" value="${student.id}">

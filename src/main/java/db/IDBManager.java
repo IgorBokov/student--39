@@ -1,6 +1,7 @@
 package db;
 
 import entiny.Discepline;
+import entiny.Mark;
 import entiny.Student;
 import entiny.Term;
 
@@ -26,4 +27,5 @@ public interface IDBManager {
     void modifyStudent(String id, String surname, String name, String group, String date);
 
     List<Term> getAllActiveTerm();
+    List<Mark> getMarksByStudent(String idStudent, String idTerm);
 }

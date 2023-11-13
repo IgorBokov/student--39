@@ -3,6 +3,7 @@ package db;
 
 import constants.Constants;
 import entiny.Discepline;
+import entiny.Mark;
 import entiny.Student;
 import entiny.Term;
 
@@ -163,7 +164,7 @@ public class DBManager implements IDBManager {
             Class.forName("com.mysql.cj.jdbc.Driver"); // подключили драйвер jdbc
             Connection con = DriverManager.getConnection(Constants.URL_DATABASE);
             Statement stmt = con.createStatement();  // создали пустой запрос
-            stmt.execute("UPDATE `students_39`.`student` SET `surname` = '"+surname+"', `name` = '"+name+"', `group` = '"+group+"', `date` = '"+date+"' WHERE (`id` = '"+id+"');");
+            stmt.execute("UPDATE `students_39`.`student` SET `surname` = '" + surname + "', `name` = '" + name + "', `group` = '" + group + "', `date` = '" + date + "' WHERE (`id` = '" + id + "');");
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -188,5 +189,31 @@ public class DBManager implements IDBManager {
             throw new RuntimeException(e);
         }
         return terms;
+    }
+
+    @Override
+    public List<Mark> getMarksByStudent(String idStudent, String idTerm) {
+        ArrayList<Mark> marks = new ArrayList<Mark>();
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver"); // подключили драйвер jdbc
+            Connection con = DriverManager.getConnection(Constants.URL_DATABASE);
+            Statement stmt = con.createStatement();  // создали пустой запрос
+            ResultSet rs = stmt.executeQuery("SELECT d.id,d.discipline,m.mark FROM mark as m\n" +
+                    "LEFT JOIN term_discipline as td on m.id_term_discipline = td.id\n" +
+                    "LEFT JOIN discipline as d on td.id_discipline = d.id\n" +
+                    "WHERE m.id_student = " + idStudent + " AND td.id_term = " + idTerm);
+            while (rs.next()) {
+                Mark mark = new Mark();
+                mark.setMark(rs.getInt("mark"));
+                Discepline discepline = new Discepline();
+                discepline.setId(rs.getInt("id"));
+                discepline.setDiscepline(rs.getString("discipline"));
+                mark.setDiscepline(discepline);
+                marks.add(mark);
+                            }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        return marks;
     }
 }
